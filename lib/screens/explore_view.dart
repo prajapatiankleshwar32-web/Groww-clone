@@ -191,6 +191,76 @@ class ExploreWidget extends StatelessWidget {
           'https://assets-netstorage.groww.in/stock-assets/logos2/StridesPharma_63459406134_16996.png',
     },
   ];
+  final List<Map<String, dynamic>> popularEtf = [
+    {
+      "title": "Nippon India ETF Nifty 50 BeES",
+      "price": "₹291.08",
+      "change": "-1.50(0.51%)",
+      "positiveStatus": false,
+      "image":
+          'https://assets-netstorage.groww.in/mf-assets/logos/reliance_groww.png',
+    },
+    {
+      "title": "Nippon India ETF Gold BeES",
+      "price": "₹100.02",
+      "change": "+0.34(0.34%)",
+      "positiveStatus": true,
+      "image":
+          'https://assets-netstorage.groww.in/mf-assets/logos/reliance_groww.png',
+    },
+  ];
+  final List<Map<String, dynamic>> etfByGroww = [
+    {
+      "title": "Groww Gold ETF",
+      "price": "₹118.02",
+      "change": "+0.20(0.17%)",
+      "positiveStatus": true,
+      "image":
+          'https://assets-netstorage.groww.in/mf-assets/logos/indiabulls_groww.png',
+    },
+    {
+      "title": "Groww Silver ETF",
+      "price": "₹146.76",
+      "change": "+2.07(1.43%)",
+      "positiveStatus": true,
+      "image":
+          'https://assets-netstorage.groww.in/mf-assets/logos/indiabulls_groww.png',
+    },
+  ];
+  final List<Map<String, dynamic>> stocksInNews = [
+    {
+      "title": "Jindal SAW",
+      "price": "₹175.25",
+      "change": "-1.08(0.61%)",
+      "positiveStatus": false,
+      "image":
+          'https://assets-netstorage.groww.in/stock-assets/logos2/JINDALSAW.webp',
+    },
+    {
+      "title": "LIC",
+      "price": "₹894.70",
+      "change": "-6.05(0.67%)",
+      "positiveStatus": false,
+      "image":
+          'https://assets-netstorage.groww.in/mf-assets/logos/lic_groww.png',
+    },
+    {
+      "title": "Dr Reddy's Labs ",
+      "price": "₹1,197.60",
+      "change": "-4.60(0.38%)",
+      "positiveStatus": false,
+      "image":
+          'https://assets-netstorage.groww.in/stock-assets/logos2/RDY.webp',
+    },
+    {
+      "title": "Tata Steel",
+      "price": "₹182.84",
+      "change": "-1.51(0.82%)",
+      "positiveStatus": false,
+      "image":
+          'https://assets-netstorage.groww.in/stock-assets/logos2/TATASTEEL.webp',
+    },
+  ];
 
   ExploreWidget({super.key});
 
@@ -377,7 +447,139 @@ class ExploreWidget extends StatelessWidget {
                 );
               },
             ),
-          ],
+            SizedBox(height: 15),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Popular ETFs for SIP',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: popularEtf.length,
+              itemBuilder: (context, index) {
+                return explore(
+                  tital: popularEtf[index]['title'],
+                  price: popularEtf[index]['price'],
+                  percantage: popularEtf[index]['change'],
+                  image: popularEtf[index]['image'],
+                  positiveStatus: popularEtf[index]['positiveStatus'],
+                );
+              },
+            ),
+            SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'ETFs by Groww',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Text(
+                  'See more >',
+                  style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 15),
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: etfByGroww.length,
+              itemBuilder: (context, index) {
+                return explore(
+                  tital: etfByGroww[index]['title'],
+                  price: etfByGroww[index]['price'],
+                  percantage: etfByGroww[index]['change'],
+                  image: etfByGroww[index]['image'],
+                  positiveStatus: etfByGroww[index]['positiveStatus'],
+                );
+              },
+            ),
+            SizedBox(height: 15),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Stocks in news',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Text(
+                  'Market news',
+                  style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
+                ),
+              ],
+            ),
+            SizedBox(height: 12),
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: stocksInNews.length,
+              itemBuilder: (context, index) {
+                return explore(
+                  tital: stocksInNews[index]['title'],
+                  price: stocksInNews[index]['price'],
+                  percantage: stocksInNews[index]['change'],
+                  image: stocksInNews[index]['image'],
+                  positiveStatus: stocksInNews[index]['positiveStatus'],
+                );
+              },
+            ),
+            SizedBox(height: 15),
+            Container(
+              padding: EdgeInsets.all(18),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'About Groww',
+                      style: TextStyle(color: AppColors.greyMedium),
+                    ),
+                    Text(
+                      'Groww Invest Tech Pvt. Ltd.',
+                      style: TextStyle(color: AppColors.greyMedium),
+                    ),
+                    Text(
+                      '(Formerly know as Nextbillion Technology Pvt.Ltd.)',
+                      style: TextStyle(color: AppColors.greyMedium),
+                    ),
+                    Text(
+                      'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE',
+                      style: TextStyle(color: AppColors.greyMedium),
+                    ),
+                    Text(
+                      'DP - IN-DP-417-2019',
+                      style: TextStyle(color: AppColors.greyMedium),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            ],
         ),
       ),
     );

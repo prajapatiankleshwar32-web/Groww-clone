@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groww_app_design/screens/views/explore_view.dart';
+import 'package:groww_app_design/screens/explore_view.dart';
+import 'package:groww_app_design/screens/holding_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 import 'package:groww_app_design/utils/app_image.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -83,8 +84,8 @@ class _HomeScreenState extends State<HomeScreen>
               indicatorColor: Colors.black,
               indicatorWeight: 1,
               tabs: const [
-                Tab(text: "Explore"),
                 Tab(text: "Holdings"),
+                Tab(text: "Explore"),
                 Tab(text: "Position"),
                 Tab(text: "Order"),
                 Tab(text: "Watchlist"),
@@ -98,8 +99,9 @@ class _HomeScreenState extends State<HomeScreen>
               controller: _tabController,
 
               children: [
+                HoldingWidget(),
                 ExploreWidget(),
-                Container(child: Text('Holding')),
+
                 Container(child: Text('Positions')),
                 Container(child: Text('Order')),
                 Container(child: Text('Watchlist')),
