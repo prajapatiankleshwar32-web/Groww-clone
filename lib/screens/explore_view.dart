@@ -555,31 +555,22 @@ class ExploreWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'About Groww',
-                      style: TextStyle(color: AppColors.greyMedium),
-                    ),
-                    Text(
-                      'Groww Invest Tech Pvt. Ltd.',
-                      style: TextStyle(color: AppColors.greyMedium),
-                    ),
-                    Text(
-                      '(Formerly know as Nextbillion Technology Pvt.Ltd.)',
-                      style: TextStyle(color: AppColors.greyMedium),
-                    ),
-                    Text(
-                      'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE',
-                      style: TextStyle(color: AppColors.greyMedium),
-                    ),
-                    Text(
+                      textAlign: TextAlign.center,
+                      'About Groww\n'
+                      'Groww Invest Tech Pvt. Ltd.\n'
+                      '(Formerly known as Nextbillion Technology Pvt. Ltd.)\n'
+                      'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE\n'
                       'DP - IN-DP-417-2019',
-                      style: TextStyle(color: AppColors.greyMedium),
+                      style: TextStyle(
+                        color: AppColors.greyMedium,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-
-            ],
+          ],
         ),
       ),
     );

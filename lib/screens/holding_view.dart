@@ -16,6 +16,36 @@ class HoldingWidget extends StatelessWidget {
       'shareperchantageprice': '(₹30.91)',
     },
   ];
+  final List<Map<String, dynamic>> holdingListMoreYou = [
+    {
+      'shareimage':
+          'https://assets-netstorage.groww.in/stock-assets/logos2/TATAMOTORS.webp',
+      'sharename': 'TATAGOLD',
+      'sharecurrentprice': '₹11.77',
+      'shareperchantageprice': '+0.06(0.51%)',
+    },
+    {
+      'shareimage':
+          'https://assets-netstorage.groww.in/stock-assets/logos2/IDEA.webp',
+      'sharename': 'Vodafone Idea',
+      'sharecurrentprice': '₹9.09',
+      'shareperchantageprice': '+0.35(4.01%)',
+    },
+    {
+      'shareimage':
+          'https://assets-netstorage.groww.in/mf-assets/logos/tata_groww.png',
+      'sharename': 'TATSILV',
+      'sharecurrentprice': '₹14.60',
+      'shareperchantageprice': '+0.11(0.76%)',
+    },
+    {
+      'shareimage':
+          'https://assets-netstorage.groww.in/stock-assets/logos2/SAGILITY.webp',
+      'sharename': 'Sagility',
+      'sharecurrentprice': '₹53.17',
+      'shareperchantageprice': '+0.75(1.22%)',
+    },
+  ];
   HoldingWidget({super.key});
 
   @override
@@ -24,7 +54,9 @@ class HoldingWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 14, left: 14),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 20),
             Container(
               padding: EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -194,6 +226,34 @@ class HoldingWidget extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(height: 15),
+
+            Text(
+              'More stocks for you',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(height: 15),
+            GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: holdingListMoreYou.length,
+              itemBuilder: (context, index) {
+                return mStocks(
+                  shareimage: holdingListMoreYou[index]['shareimage'],
+                  sharename: holdingListMoreYou[index]['sharename'],
+                  sharecurrentprice:
+                      holdingListMoreYou[index]['sharecurrentprice'],
+                  shareperchantageprice:
+                      holdingListMoreYou[index]['shareperchantageprice'],
+                );
+              },
+            ),
+            SizedBox(height: 30),
           ],
         ),
       ),
@@ -244,6 +304,46 @@ class HoldingWidget extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget mStocks({
+    required String shareimage,
+    required String sharename,
+    required String sharecurrentprice,
+    required String shareperchantageprice,
+  }) {
+    return Container(
+      padding: EdgeInsets.all(23),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.borderGreyColor),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(18),
+            child: Image.network(shareimage, height: 23, width: 23),
+          ),
+          SizedBox(height: 8),
+          Text(sharename, style: TextStyle(fontSize: 13)),
+          Spacer(),
+          Text(
+            sharecurrentprice,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: AppColors.blackMedium,
+            ),
+          ),
+          SizedBox(height: 3),
+          Text(
+            shareperchantageprice,
+            style: TextStyle(fontSize: 10, color: AppColors.greenMedium),
           ),
         ],
       ),

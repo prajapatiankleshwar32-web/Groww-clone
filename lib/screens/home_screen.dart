@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:groww_app_design/screens/all_list_view.dart';
 import 'package:groww_app_design/screens/explore_view.dart';
 import 'package:groww_app_design/screens/holding_view.dart';
+import 'package:groww_app_design/screens/order_view.dart';
+import 'package:groww_app_design/screens/position_view.dart';
+import 'package:groww_app_design/screens/watchlist_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 import 'package:groww_app_design/utils/app_image.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -32,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: Column(
               children: [
                 SizedBox(
@@ -66,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen>
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
               ],
             ),
           ),
@@ -84,8 +87,8 @@ class _HomeScreenState extends State<HomeScreen>
               indicatorColor: Colors.black,
               indicatorWeight: 1,
               tabs: const [
-                Tab(text: "Holdings"),
                 Tab(text: "Explore"),
+                Tab(text: "Holdings"),
                 Tab(text: "Position"),
                 Tab(text: "Order"),
                 Tab(text: "Watchlist"),
@@ -93,23 +96,28 @@ class _HomeScreenState extends State<HomeScreen>
               ],
             ),
           ),
-          SizedBox(height: 20),
           Expanded(
             child: TabBarView(
               controller: _tabController,
-
               children: [
-                HoldingWidget(),
                 ExploreWidget(),
-
-                Container(child: Text('Positions')),
-                Container(child: Text('Order')),
-                Container(child: Text('Watchlist')),
-                Container(child: Text('All Watchlist')),
+                HoldingWidget(),
+                PositionWidget(),
+                OrderWidget(),
+                WatchlistWidget(),
+                AllListWidget(),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [],
+        ),
       ),
     );
   }
