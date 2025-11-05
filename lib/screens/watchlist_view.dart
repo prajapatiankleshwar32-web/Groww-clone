@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groww_app_design/screens/fotter_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 
 class WatchlistWidget extends StatelessWidget {
@@ -65,6 +66,8 @@ class WatchlistWidget extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(height: 20),
+            FotterWidget(),
           ],
         ),
       ),

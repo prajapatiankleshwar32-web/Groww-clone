@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:groww_app_design/screens/fotter_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
+import 'package:groww_app_design/utils/app_icon.dart';
 
 class HoldingWidget extends StatelessWidget {
   final List<Map<String, dynamic>> holdingList = [
@@ -8,12 +11,14 @@ class HoldingWidget extends StatelessWidget {
       'sharequantity': '148 shares',
       'sharecurrentprice': '₹15,127.01',
       'shareperchantageprice': '₹14,356.00',
+      'icon': AppIcon.bullish,
     },
     {
       'sharename': 'CPSE ETF',
       'sharequantity': '1 share ',
       'sharecurrentprice': '₹94.65',
       'shareperchantageprice': '(₹30.91)',
+      'icon': AppIcon.bullish,
     },
   ];
   final List<Map<String, dynamic>> holdingListMoreYou = [
@@ -223,6 +228,7 @@ class HoldingWidget extends StatelessWidget {
                   sharecurrentprice: holdingList[index]['sharecurrentprice'],
                   shareperchantageprice:
                       holdingList[index]['shareperchantageprice'],
+                  icon: holdingList[index]['icon'],
                 );
               },
             ),
@@ -253,7 +259,9 @@ class HoldingWidget extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 30),
+            
+             SizedBox(height: 20),
+            FotterWidget(),
           ],
         ),
       ),
@@ -265,6 +273,7 @@ class HoldingWidget extends StatelessWidget {
     required String sharequantity,
     required String sharecurrentprice,
     required String shareperchantageprice,
+    required String icon,
   }) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -287,7 +296,7 @@ class HoldingWidget extends StatelessWidget {
               ),
             ],
           ),
-          Spacer(),
+          Expanded(child: SvgPicture.asset(icon)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

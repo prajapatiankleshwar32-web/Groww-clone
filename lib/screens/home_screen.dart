@@ -15,11 +15,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentindex = 1;
+  int _currentindex = 4;
 
   final List<Widget> _bottomScreen = [
     const StockContaintScreen(),
-     FutureScreen(),
+    FutureScreen(),
     const MutualFundScreen(),
     const UpiScreen(),
     const LoansScreen(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groww_app_design/screens/fotter_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 import 'package:groww_app_design/utils/app_icon.dart';
 import 'package:groww_app_design/utils/app_image.dart';
@@ -548,28 +549,8 @@ class ExploreWidget extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 15),
-            Container(
-              padding: EdgeInsets.all(18),
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      textAlign: TextAlign.center,
-                      'About Groww\n'
-                      'Groww Invest Tech Pvt. Ltd.\n'
-                      '(Formerly known as Nextbillion Technology Pvt. Ltd.)\n'
-                      'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE\n'
-                      'DP - IN-DP-417-2019',
-                      style: TextStyle(
-                        color: AppColors.greyMedium,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SizedBox(height: 20),
+            FotterWidget(),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:groww_app_design/screens/fotter_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 import 'package:groww_app_design/utils/app_icon.dart';
 
@@ -95,7 +96,9 @@ class PositionWidget extends StatelessWidget {
                 );
               },
             ),
+
             SizedBox(height: 20),
+            FotterWidget(),
           ],
         ),
       ),

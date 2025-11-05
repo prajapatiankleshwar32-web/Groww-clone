@@ -8,4 +8,6 @@ class AppColors {
   static final Color greenMedium = Color(0xff04B488);
   static final Color greyMedium = Color(0xff7C7E8C);
   static final Color borderGreyColor = Colors.grey.shade300;
+  static final Color liteGreayColor = Color(0xffF8F8F8);
+
 }
