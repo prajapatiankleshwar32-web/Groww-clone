@@ -6,23 +6,27 @@ class FotterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return getfoooter();
+  }
+
+  Container getfoooter() {
     return Container(
-      padding: EdgeInsets.all(18),
-      child: Center(
-        child: Column(
-          children: [
-            Text(
-              textAlign: TextAlign.center,
-              'About Groww\n'
-              'Groww Invest Tech Pvt. Ltd.\n'
-              '(Formerly known as Nextbillion Technology Pvt. Ltd.)\n'
-              'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE\n'
-              'DP - IN-DP-417-2019',
-              style: TextStyle(color: AppColors.greyMedium, fontSize: 12),
-            ),
-          ],
-        ),
+    padding: EdgeInsets.all(18),
+    child: Center(
+      child: Column(
+        children: [
+          Text(
+            textAlign: TextAlign.center,
+            'About Groww\n'
+            'Groww Invest Tech Pvt. Ltd.\n'
+            '(Formerly known as Nextbillion Technology Pvt. Ltd.)\n'
+            'SEBI-Stock BROKER - INZ000301838 | Member of NSE, BSE\n'
+            'DP - IN-DP-417-2019',
+            style: TextStyle(color: AppColors.greyMedium, fontSize: 12),
+          ),
+        ],
       ),
-    );
+    ),
+  );
   }
 }

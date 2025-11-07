@@ -126,44 +126,7 @@ class FutureScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: AppColors.borderGreyColor),
-              ),
-              child: Row(
-                children: [
-                  Icon(Iconsax.chart_2_outline),
-                  SizedBox(width: 15),
-                  Text(
-                    'Scalper',
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                  ),
-                  Spacer(),
-                  Container(
-                    padding: EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(
-                        255,
-                        118,
-                        161,
-                        236,
-                      ).withValues(alpha: 0.1),
-                    ),
-                    child: Text(
-                      '1-tap Trading >',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blueAccent,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            getscalper(),
             SizedBox(height: 30),
             Text(
               'Top Traded',
@@ -177,21 +140,7 @@ class FutureScreen extends StatelessWidget {
                 equitycomodity(title: 'Commodities'),
               ],
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: equityCommodity.length,
-              itemBuilder: (context, index) {
-                return equitycomoditylist(
-                  shareimage: equityCommodity[index]['shareimage'],
-                  sharename: equityCommodity[index]['sharename'],
-                  shareprice: equityCommodity[index]['shareprice'],
-                  sharepercaentage: equityCommodity[index]['sharepercaentage'],
-                  sharepriceindigater:
-                      equityCommodity[index]['sharepriceindigater'],
-                );
-              },
-            ),
+            getequitystocks(),
             SizedBox(height: 20),
             Row(
               children: [
@@ -203,76 +152,151 @@ class FutureScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Company',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Text(
-                  '<> Market Price',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            getcompany(),
             SizedBox(height: 15),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: topgainerslist.length,
-              itemBuilder: (context, index) {
-                return topgainerloser(
-                  shareimage: topgainerslist[index]['shareimage'],
-                  sharename: topgainerslist[index]['sharename'],
-                  shareprice: topgainerslist[index]['shareprice'],
-                  sharepercaentage: topgainerslist[index]['sharepercaentage'],
-                  sharepriceindigater:
-                      topgainerslist[index]['sharepriceindigater'],
-                );
-              },
-            ),
+            getgainerslosers(),
             SizedBox(height: 15),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Commodities',
-                    style: TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Text(
-                  'View all',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            getcommmodities(),
             SizedBox(height: 15),
-            SizedBox(
-              height: 100,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: cmdtlist.length,
-                separatorBuilder: (context, index) => SizedBox(width: 38),
-                itemBuilder: (context, index) {
-                  return commodities(
-                    cmdtimages: cmdtlist[index]['cmdtimages'],
-                    cmdtnames: cmdtlist[index]['cmdtnames'],
-                    cmdtprice: cmdtlist[index]['cmdtprice'],
-                  );
-                },
-              ),
-            ),
+            commoditiesstocks(),
              SizedBox(height: 20),
             FotterWidget(),
           ],
         ),
       ),
     );
+  }
+
+  SizedBox commoditiesstocks() {
+    return SizedBox(
+            height: 100,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: cmdtlist.length,
+              separatorBuilder: (context, index) => SizedBox(width: 38),
+              itemBuilder: (context, index) {
+                return commodities(
+                  cmdtimages: cmdtlist[index]['cmdtimages'],
+                  cmdtnames: cmdtlist[index]['cmdtnames'],
+                  cmdtprice: cmdtlist[index]['cmdtprice'],
+                );
+              },
+            ),
+          );
+  }
+
+  Row getcommmodities() {
+    return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Commodities',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ),
+              Text(
+                'View all',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              ),
+            ],
+          );
+  }
+
+  Row getcompany() {
+    return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Company',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                ),
+              ),
+              Text(
+                '<> Market Price',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              ),
+            ],
+          );
+  }
+
+  ListView getgainerslosers() {
+    return ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: topgainerslist.length,
+            itemBuilder: (context, index) {
+              return topgainerloser(
+                shareimage: topgainerslist[index]['shareimage'],
+                sharename: topgainerslist[index]['sharename'],
+                shareprice: topgainerslist[index]['shareprice'],
+                sharepercaentage: topgainerslist[index]['sharepercaentage'],
+                sharepriceindigater:
+                    topgainerslist[index]['sharepriceindigater'],
+              );
+            },
+          );
+  }
+
+  ListView getequitystocks() {
+    return ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: equityCommodity.length,
+            itemBuilder: (context, index) {
+              return equitycomoditylist(
+                shareimage: equityCommodity[index]['shareimage'],
+                sharename: equityCommodity[index]['sharename'],
+                shareprice: equityCommodity[index]['shareprice'],
+                sharepercaentage: equityCommodity[index]['sharepercaentage'],
+                sharepriceindigater:
+                    equityCommodity[index]['sharepriceindigater'],
+              );
+            },
+          );
+  }
+
+  Container getscalper() {
+    return Container(
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: AppColors.borderGreyColor),
+            ),
+            child: Row(
+              children: [
+                Icon(Iconsax.chart_2_outline),
+                SizedBox(width: 15),
+                Text(
+                  'Scalper',
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                ),
+                Spacer(),
+                Container(
+                  padding: EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromARGB(
+                      255,
+                      118,
+                      161,
+                      236,
+                    ).withValues(alpha: 0.1),
+                  ),
+                  child: Text(
+                    '1-tap Trading >',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 
   Widget equitycomodity({required String title}) {

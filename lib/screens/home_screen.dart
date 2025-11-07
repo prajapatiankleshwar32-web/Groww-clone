@@ -15,8 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentindex = 4;
-
+  int _currentindex = 0;
   final List<Widget> _bottomScreen = [
     const StockContaintScreen(),
     FutureScreen(),
@@ -28,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: appBar(),
+      appBar: appBar(logo: 'assets/images/groww.webp'),
+
       body: _bottomScreen[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,
@@ -59,12 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  AppBar appBar() {
+  AppBar appBar({required String logo}) {
     return AppBar(
       backgroundColor: AppColors.white,
       title: Row(
         children: [
-          Image.asset(AppImage.logo, height: 30, width: 30),
+          applogoWidget(AppImage.logo),
 
           SizedBox(width: 13),
           Text(
@@ -78,9 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
         IconButton(onPressed: () {}, icon: Icon(Icons.qr_code, size: 21)),
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: CircleAvatar(child: Image.asset(AppImage.profileimage)),
+          child: CircleAvatar(
+            backgroundColor: AppColors.white,
+            child: applogoWidget(AppImage.profileimage),
+          ),
         ),
       ],
+    );
+  }
+
+  Widget applogoWidget(String imagePath) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(80),
+      child: Image.asset(imagePath, height: 30, width: 30, fit: BoxFit.cover),
     );
   }
 

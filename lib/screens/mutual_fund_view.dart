@@ -14,8 +14,8 @@ class MutualFundScreen extends StatefulWidget {
   State<MutualFundScreen> createState() => _MutualFundScreenState();
 }
 
-class _MutualFundScreenState extends State<MutualFundScreen> 
-   with SingleTickerProviderStateMixin {
+class _MutualFundScreenState extends State<MutualFundScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -25,48 +25,11 @@ class _MutualFundScreenState extends State<MutualFundScreen>
     super.initState();
     _tabController = TabController(length: 6, vsync: this);
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 55,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    indexsummery(
-                      title: "NIFTY 50",
-                      price: '25,877.85',
-                      percentagechange: '-176.05(0.68%)',
-                    ),
-                    SizedBox(width: 18),
-                    indexsummery(
-                      title: 'SENSEX',
-                      price: '84,404.46',
-                      percentagechange: '-592.67(-592.67)',
-                    ),
-                    SizedBox(width: 18),
-                    indexsummery(
-                      title: 'BANK NIFTY',
-                      price: '58,031.10',
-                      percentagechange: '-354.15(0.61%)',
-                    ),
-                    SizedBox(width: 18),
-                    indexsummery(
-                      title: 'ALL Indices',
-                      price: '50',
-                      percentagechange: '543(1%)',
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
         Align(
           alignment: Alignment.centerLeft,
           child: TabBar(
@@ -106,6 +69,7 @@ class _MutualFundScreenState extends State<MutualFundScreen>
       ],
     );
   }
+
   Widget indexsummery({
     required String title,
     required String price,

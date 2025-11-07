@@ -8,6 +8,10 @@ class AllListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return listWidget();
+  }
+
+  Widget listWidget() {
     return Column(
       children: [
         Center(child: SvgPicture.asset(AppIcon.logo)),

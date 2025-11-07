@@ -281,280 +281,262 @@ class ExploreWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: mostBroughtList.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: mostBroughtList[index]['title'],
-                  price: mostBroughtList[index]['price'],
-                  percantage: mostBroughtList[index]['change'],
-                  image: mostBroughtList[index]['image'],
-                  positiveStatus: mostBroughtList[index]['positiveStatus'],
-                );
-              },
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Product and tools',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
 
-                Text('See more', style: TextStyle(color: Colors.grey)),
-              ],
-            ),
+            mostBought(),
+
+            SizedBox(height: 20),
+            productandtools(),
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 1,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: productTools.length,
-              itemBuilder: (context, index) {
-                return producttools(
-                  title: productTools[index]['title'],
-                  icon: productTools[index]['icon'],
-                );
-              },
-            ),
+            mainboard(),
             SizedBox(height: 18),
-            Text(
-              'Top movers today',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
+            Topmovers(),
             SizedBox(height: 10),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: topmoverslist.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: topmoverslist[index]['title'],
-                  price: topmoverslist[index]['price'],
-                  percantage: topmoverslist[index]['change'],
-                  image: topmoverslist[index]['image'],
-                  positiveStatus: topmoverslist[index]['positiveStatus'],
-                );
-              },
-            ),
+
+            intraday(),
             SizedBox(height: 15),
             Text(
               'Most traded in MTF',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: mosttrededtoday.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: mosttrededtoday[index]['title'],
-                  price: mosttrededtoday[index]['price'],
-                  percantage: mosttrededtoday[index]['change'],
-                  image: mosttrededtoday[index]['image'],
-                  positiveStatus: mosttrededtoday[index]['positiveStatus'],
-                );
-              },
-            ),
+            getMostTradedTodayView(),
             SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Top intraday',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Text(
-                  'Intraday screener',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.greyMedium,
-                  ),
-                ),
-              ],
-            ),
+            getIntradayHeadingView(),
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: topintraday.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: topintraday[index]['title'],
-                  price: topintraday[index]['price'],
-                  percantage: topintraday[index]['change'],
-                  image: topintraday[index]['image'],
-                  positiveStatus: topintraday[index]['positiveStatus'],
-                );
-              },
-            ),
+            getTopinradayview(),
             SizedBox(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Volume shockers',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  'Stock trading above their weekly avg volume',
-                  style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
-                ),
-              ],
-            ),
+            getvolumestoks(),
             SizedBox(height: 10),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: vshockers.length,
-              itemBuilder: (context, index) {
-                return volumeShockers(
-                  tital: vshockers[index]['title'],
-                  price: vshockers[index]['price'],
-                  percantage: vshockers[index]['change'],
-                  image: vshockers[index]['image'],
-                  positiveStatus: vshockers[index]['positiveStatus'],
-                );
-              },
-            ),
+            getVolumeshockers(),
             SizedBox(height: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Popular ETFs for SIP',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            getpopulatEtf(),
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: popularEtf.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: popularEtf[index]['title'],
-                  price: popularEtf[index]['price'],
-                  percantage: popularEtf[index]['change'],
-                  image: popularEtf[index]['image'],
-                  positiveStatus: popularEtf[index]['positiveStatus'],
-                );
-              },
-            ),
+            getpopularstocketf(),
             SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'ETFs by Groww',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Text(
-                  'See more >',
-                  style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
-                ),
-              ],
-            ),
+            getmoreetf(),
 
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: etfByGroww.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: etfByGroww[index]['title'],
-                  price: etfByGroww[index]['price'],
-                  percantage: etfByGroww[index]['change'],
-                  image: etfByGroww[index]['image'],
-                  positiveStatus: etfByGroww[index]['positiveStatus'],
-                );
-              },
-            ),
+            gettrendingstocks(),
             SizedBox(height: 15),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Stocks in news',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Text(
-                  'Market news',
-                  style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
-                ),
-              ],
-            ),
+            getnewsstocks(),
             SizedBox(height: 12),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: stocksInNews.length,
-              itemBuilder: (context, index) {
-                return explore(
-                  tital: stocksInNews[index]['title'],
-                  price: stocksInNews[index]['price'],
-                  percantage: stocksInNews[index]['change'],
-                  image: stocksInNews[index]['image'],
-                  positiveStatus: stocksInNews[index]['positiveStatus'],
-                );
-              },
-            ),
+            getpopularstocks(),
             SizedBox(height: 20),
             FotterWidget(),
           ],
         ),
       ),
     );
+  }
+
+  GridView getpopularstocks() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: stocksInNews.length,
+            itemBuilder: (context, index) {
+              return explore(
+                tital: stocksInNews[index]['title'],
+                price: stocksInNews[index]['price'],
+                percantage: stocksInNews[index]['change'],
+                image: stocksInNews[index]['image'],
+                positiveStatus: stocksInNews[index]['positiveStatus'],
+              );
+            },
+          );
+  }
+
+  Row getnewsstocks() {
+    return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Stocks in news',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+              Text(
+                'Market news',
+                style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
+              ),
+            ],
+          );
+  }
+
+  GridView gettrendingstocks() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: etfByGroww.length,
+            itemBuilder: (context, index) {
+              return explore(
+                tital: etfByGroww[index]['title'],
+                price: etfByGroww[index]['price'],
+                percantage: etfByGroww[index]['change'],
+                image: etfByGroww[index]['image'],
+                positiveStatus: etfByGroww[index]['positiveStatus'],
+              );
+            },
+          );
+  }
+
+  Row getmoreetf() {
+    return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'ETFs by Groww',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+              Text(
+                'See more >',
+                style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
+              ),
+            ],
+          );
+  }
+
+  GridView getpopularstocketf() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: popularEtf.length,
+            itemBuilder: (context, index) {
+              return explore(
+                tital: popularEtf[index]['title'],
+                price: popularEtf[index]['price'],
+                percantage: popularEtf[index]['change'],
+                image: popularEtf[index]['image'],
+                positiveStatus: popularEtf[index]['positiveStatus'],
+              );
+            },
+          );
+  }
+
+  Column getpopulatEtf() {
+    return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Popular ETFs for SIP',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+            ],
+          );
+  }
+
+  ListView getVolumeshockers() {
+    return ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: vshockers.length,
+            itemBuilder: (context, index) {
+              return volumeShockers(
+                tital: vshockers[index]['title'],
+                price: vshockers[index]['price'],
+                percantage: vshockers[index]['change'],
+                image: vshockers[index]['image'],
+                positiveStatus: vshockers[index]['positiveStatus'],
+              );
+            },
+          );
+  }
+
+  Column getvolumestoks() {
+    return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Volume shockers',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                'Stock trading above their weekly avg volume',
+                style: TextStyle(fontSize: 13, color: AppColors.greyMedium),
+              ),
+            ],
+          );
+  }
+
+  GridView getTopinradayview() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: topintraday.length,
+            itemBuilder: (context, index) {
+              return explore(
+                tital: topintraday[index]['title'],
+                price: topintraday[index]['price'],
+                percantage: topintraday[index]['change'],
+                image: topintraday[index]['image'],
+                positiveStatus: topintraday[index]['positiveStatus'],
+              );
+            },
+          );
+  }
+
+  Row getIntradayHeadingView() {
+    return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Top intraday',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+              Text(
+                'Intraday screener',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.greyMedium,
+                ),
+              ),
+            ],
+          );
+  }
+
+  GridView getMostTradedTodayView() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: mosttrededtoday.length,
+            itemBuilder: (context, index) {
+              return explore(
+                tital: mosttrededtoday[index]['title'],
+                price: mosttrededtoday[index]['price'],
+                percantage: mosttrededtoday[index]['change'],
+                image: mosttrededtoday[index]['image'],
+                positiveStatus: mosttrededtoday[index]['positiveStatus'],
+              );
+            },
+          );
   }
 
   Widget volumeShockers({
@@ -675,6 +657,91 @@ class ExploreWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget mostBought() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+      ),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: mostBroughtList.length,
+      itemBuilder: (context, index) {
+        return explore(
+          tital: mostBroughtList[index]['title'],
+          price: mostBroughtList[index]['price'],
+          percantage: mostBroughtList[index]['change'],
+          image: mostBroughtList[index]['image'],
+          positiveStatus: mostBroughtList[index]['positiveStatus'],
+        );
+      },
+    );
+  }
+
+  Widget productandtools() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Product and tools',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        ),
+
+        Text('See more', style: TextStyle(color: Colors.grey)),
+      ],
+    );
+  }
+
+  Widget mainboard() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 5,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 1,
+      ),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: productTools.length,
+      itemBuilder: (context, index) {
+        return producttools(
+          title: productTools[index]['title'],
+          icon: productTools[index]['icon'],
+        );
+      },
+    );
+  }
+
+  Widget Topmovers() {
+    return Text(
+      'Top movers today',
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+    );
+  }
+
+  Widget intraday() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+      ),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: topmoverslist.length,
+      itemBuilder: (context, index) {
+        return explore(
+          tital: topmoverslist[index]['title'],
+          price: topmoverslist[index]['price'],
+          percantage: topmoverslist[index]['change'],
+          image: topmoverslist[index]['image'],
+          positiveStatus: topmoverslist[index]['positiveStatus'],
+        );
+      },
     );
   }
 }

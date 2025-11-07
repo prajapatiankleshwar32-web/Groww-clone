@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groww_app_design/screens/fotter_view.dart';
+import 'package:groww_app_design/screens/inatant_view.dart';
+import 'package:groww_app_design/screens/loanagainst_view.dart';
 import 'package:groww_app_design/utils/app_colors.dart';
 import 'package:groww_app_design/utils/app_icon.dart';
 
@@ -15,20 +17,36 @@ class LoansScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            loanswidget(
-              title1: 'Personal loan',
-              title2: 'Hassle-free money in your bank account',
-              images: 'assets/icons/ipo.svg',
-              title3: 'Available upto',
-              title4: '₹4,00,000',
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Inatenthasal()),
+                );
+              },
+              child: loanswidget(
+                title1: 'Personal loan',
+                title2: 'Hassle-free money in your bank account',
+                images: 'assets/icons/ipo.svg',
+                title3: 'Available upto',
+                title4: '₹4,00,000',
+              ),
             ),
             SizedBox(height: 15),
-            loanswidget(
-              title1: 'Loan against Mutual Funds',
-              title2: 'Starting @ 10.49% p.a.',
-              images: 'assets/icons/intraday.svg',
-              title3: 'Available loan limit',
-              title4: '₹15,00,00,000',
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Loanagainst()),
+                );
+              },
+              child: loanswidget(
+                title1: 'Loan against Mutual Funds',
+                title2: 'Starting @ 10.49% p.a.',
+                images: 'assets/icons/intraday.svg',
+                title3: 'Available loan limit',
+                title4: '₹15,00,00,000',
+              ),
             ),
             SizedBox(height: 20),
             FotterWidget(),

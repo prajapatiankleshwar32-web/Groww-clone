@@ -10,7 +10,7 @@ class HoldingWidget extends StatelessWidget {
       'sharename': 'Vikran Engineering',
       'sharequantity': '148 shares',
       'sharecurrentprice': '₹15,127.01',
-      'shareperchantageprice': '₹14,356.00',
+      'shareperchantageprice': '(₹14,356.00)',
       'icon': AppIcon.bullish,
     },
     {
@@ -70,168 +70,14 @@ class HoldingWidget extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'HOLDING  (2)',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: AppColors.greyMedium,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              '₹15,127.01',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColors.borderGreyColor,
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.remove_red_eye_outlined,
-                              size: 18,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColors.borderGreyColor,
-                              ),
-                            ),
-                            child: Icon(Icons.show_chart, size: 18),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColors.borderGreyColor,
-                              ),
-                            ),
-                            child: Icon(Icons.track_changes, size: 18),
-                          ),
-                        ],
-                      ),
-
-                      Divider(color: AppColors.borderGreyColor),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              '1D return',
-                              style: TextStyle(color: AppColors.greyMedium),
-                            ),
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            '-111.58 (0.78%)',
-                            style: TextStyle(
-                              color: AppColors.redMedium,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Total return',
-                              style: TextStyle(color: AppColors.greyMedium),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            '+740.10 (5.14%)',
-                            style: TextStyle(
-                              color: AppColors.greenMedium,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Invested',
-                              style: TextStyle(color: AppColors.greyMedium),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            '₹14,386.91',
-                            style: TextStyle(
-                              color: AppColors.blackMedium,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  getStockholdingbar(),
                 ],
               ),
             ),
             SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
-                  'Sort ',
-                  style: TextStyle(
-                    fontSize: 13,
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-
-                Icon(Icons.sort, size: 15),
-                Spacer(),
-                Text(
-                  '<> Current(Invested)',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
+            getcurrentinvestment(),
             SizedBox(height: 15),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: holdingList.length,
-              separatorBuilder: (context, index) {
-                return Divider(color: AppColors.borderGreyColor);
-              },
-              itemBuilder: (context, index) {
-                return holdings(
-                  sharename: holdingList[index]['sharename'],
-                  sharequantity: holdingList[index]['sharequantity'],
-                  sharecurrentprice: holdingList[index]['sharecurrentprice'],
-                  shareperchantageprice:
-                      holdingList[index]['shareperchantageprice'],
-                  icon: holdingList[index]['icon'],
-                );
-              },
-            ),
+            getsharelistinholding(),
             SizedBox(height: 15),
 
             Text(
@@ -239,33 +85,203 @@ class HoldingWidget extends StatelessWidget {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 15),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: holdingListMoreYou.length,
-              itemBuilder: (context, index) {
-                return mStocks(
-                  shareimage: holdingListMoreYou[index]['shareimage'],
-                  sharename: holdingListMoreYou[index]['sharename'],
-                  sharecurrentprice:
-                      holdingListMoreYou[index]['sharecurrentprice'],
-                  shareperchantageprice:
-                      holdingListMoreYou[index]['shareperchantageprice'],
-                );
-              },
-            ),
-            
-             SizedBox(height: 20),
+            getmorestockslist(),
+
+            SizedBox(height: 20),
             FotterWidget(),
           ],
         ),
       ),
     );
+  }
+
+  GridView getmorestockslist() {
+    return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: holdingListMoreYou.length,
+            itemBuilder: (context, index) {
+              return mStocks(
+                shareimage: holdingListMoreYou[index]['shareimage'],
+                sharename: holdingListMoreYou[index]['sharename'],
+                sharecurrentprice:
+                    holdingListMoreYou[index]['sharecurrentprice'],
+                shareperchantageprice:
+                    holdingListMoreYou[index]['shareperchantageprice'],
+              );
+            },
+          );
+  }
+
+  ListView getsharelistinholding() {
+    return ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: holdingList.length,
+            separatorBuilder: (context, index) {
+              return Divider(color: AppColors.borderGreyColor);
+            },
+            itemBuilder: (context, index) {
+              return holdings(
+                sharename: holdingList[index]['sharename'],
+                sharequantity: holdingList[index]['sharequantity'],
+                sharecurrentprice: holdingList[index]['sharecurrentprice'],
+                shareperchantageprice:
+                    holdingList[index]['shareperchantageprice'],
+                icon: holdingList[index]['icon'],
+              );
+            },
+          );
+  }
+
+  Row getcurrentinvestment() {
+    return Row(
+            children: [
+              Text(
+                'Sort ',
+                style: TextStyle(
+                  fontSize: 13,
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+
+              Icon(Icons.sort, size: 15),
+              Spacer(),
+              Text(
+                '<> Current(Invested)',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              ),
+            ],
+          );
+  }
+
+  Column getStockholdingbar() {
+    return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'HOLDING  (2)',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.greyMedium,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '₹15,127.01',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.borderGreyColor,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.remove_red_eye_outlined,
+                            size: 18,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.borderGreyColor,
+                            ),
+                          ),
+                          child: Icon(Icons.show_chart, size: 18),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.borderGreyColor,
+                            ),
+                          ),
+                          child: Icon(Icons.more_vert, size: 18),
+                        ),
+                      ],
+                    ),
+
+                    Divider(color: AppColors.borderGreyColor),
+                    SizedBox(height: 15),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '1D return',
+                            style: TextStyle(color: AppColors.greyMedium),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          '-111.58 (0.78%)',
+                          style: TextStyle(
+                            color: AppColors.redMedium,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Total return',
+                            style: TextStyle(color: AppColors.greyMedium),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          '+740.10 (5.14%)',
+                          style: TextStyle(
+                            color: AppColors.greenMedium,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Invested',
+                            style: TextStyle(color: AppColors.greyMedium),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          '₹14,386.91',
+                          style: TextStyle(
+                            color: AppColors.blackMedium,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
   }
 
   Widget holdings({
